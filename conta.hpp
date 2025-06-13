@@ -31,4 +31,11 @@ public:
     int getNumeroConta();
     void setSaldo();
     float getSaldo();
+    void depositar(float deposito);
+    void saque(float saque);
+    void verSaldo();
+    void salvarSaldo();
+    void lerSaldo();
+    void verResumo();
+
 };

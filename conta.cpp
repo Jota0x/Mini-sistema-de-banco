@@ -37,23 +37,24 @@ void Conta::depositar(float deposito)
 {
 
     saldo += deposito;
-    cout << deposito << "Foi depositado com sucesso!";
+    cout << deposito << " Foi depositado com sucesso!";
+    salvarSaldo();
+    salvarHistorico("Deposito de R$ " + to_string(deposito) + " Saldo atual: R$ " + to_string(saldo));
 }
 
 void Conta::saque(float saque)
 {
-    if (saldo > saque)
+    if (saldo < saque)
     {
-        cout << "valor indisponivel para saque";
+        cout << " valor indisponivel para saque" << endl;
     }
     else
+    {
         saldo -= saque;
-    cout << saque << "Foi sacado com sucesso!";
-}
-
-void Conta::verSaldo()
-{
-    cout << "Saldo total: " << saldo;
+        cout << saque << " Foi sacado com sucesso!" << endl;
+        salvarSaldo();
+        salvarHistorico("Saque de R$ " + to_string(saque) + " Saldo atual: R$ " + to_string(saldo));
+    }
 }
 
 void Conta::lerSaldo()
@@ -81,6 +82,35 @@ void Conta::salvarSaldo()
     }
     else
         cout << "Erro ao abrir arquivo";
+}
+
+void Conta::verHistorico()
+{
+    ifstream historico("historico.txt");
+    if (historico.is_open())
+    {
+        string linha;
+        cout << "Historico da conta " << endl;
+        while (getline(historico, linha))
+        {
+            cout << linha << endl;
+        }
+        historico.close();
+    }
+    else
+    {
+        cout << "Nenhum historico encontrado.";
+    }
+}
+
+void Conta::salvarHistorico(string operacao)
+{
+    ofstream historico("historico.txt", ios::app);
+    if (historico.is_open())
+    {
+        historico << operacao << endl;
+        historico.close();
+    }
 }
 
 void Conta::verResumo()

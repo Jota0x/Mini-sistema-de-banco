@@ -8,7 +8,7 @@ int main()
     int opcao;
     Conta conta;
 
-    Conta *c1 = new Conta("João Pedro",00000,0);
+    Conta *c1 = new Conta("Teste", 0, 0);
 
     do
     {
@@ -28,8 +28,8 @@ int main()
             float deposito;
             cout << "Valor do deposito: ";
             cin >> deposito;
-            conta.depositar(deposito);
-            conta.salvarSaldo();
+            c1->depositar(deposito);
+            c1->salvarSaldo();
             break;
         }
         case 2:
@@ -37,18 +37,18 @@ int main()
             float saque;
             cout << "Valor do saque: ";
             cin >> saque;
-            conta.saque(saque);
-            conta.salvarSaldo();
+            c1->saque(saque);
+            
+            break;
         }
-        break;
         case 3:
-            conta.verSaldo();
+            c1->lerSaldo();
             break;
         case 4:
-            conta.lerSaldo();
+            c1->verHistorico();
             break;
         case 5:
-            conta.verResumo();
+            c1->verResumo();
             break;
         case 0:
             break;

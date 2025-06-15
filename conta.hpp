@@ -33,9 +33,10 @@ public:
     float getSaldo();
     void depositar(float deposito);
     void saque(float saque);
-    void verSaldo();
     void salvarSaldo();
     void lerSaldo();
+    void verHistorico();
+    void salvarHistorico(string operacao);
     void verResumo();
 
 };
